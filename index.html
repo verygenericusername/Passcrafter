@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passcrafter | Best Strong Password Crafter.</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="generate.js"></script>
+    <link rel="icon" href="assets/icons/favicon.ico">
+</head>
+<body>
+    <center>
+            <h1>Passcrafter</h1>
+            <h4>The strongest password crafter.</h4>
+            <div class="seperator">
+
+            </div>
+            <br>
+            <h3 class="extra">Generated Password: </h3><input type="text" class="gen" readonly style="text-shadow: none;"> <button class="clear">Clear</button>
+            <br>
+            <h3 class="extra">Password Strength:</h3><input type="radio" name="strength" value="strong" checked><h3 class="extra" style="padding:5px;">Strong</h3> | <input type="radio" value="reallystrong" name="strength"><h3 class="extra" style="padding:5px;">Really Strong</h3>
+            <br>
+            <h3 class="extra">Length of Password:</h3><input type="number" min="8" max="30" value="15" style="color:black; text-shadow:none;" class="len">
+            <br>
+            <button class="generate" style="color:black;">Generate!</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <h3 class="extra">&copy; Chevy, 2023.</h3>
+    </center>
+    <script>
+        var button = document.querySelector(".generate");
+        var strength = document.getElementsByName("strength");
+        var length = document.querySelector(".len");
+        var pass = document.querySelector(".gen");
+        var clear = document.querySelector(".clear");
+        button.addEventListener("click", function(){
+            if(length.value >= 31 || length.value < 8){
+                button.style.disabled = true;
+                button.textContent = "Failed to Generate!";
+                setTimeout(function(){
+                    button.style.disabled = false;
+                    button.textContent = "Generate!";
+                },1000);
+            }else{
+                for(let i = 0; i < strength.length; i++){
+                if(strength[i].value === "strong" && strength[i].checked === true){
+                    var check = generate.run(strength[i].value,length.value,button);
+                    if(check !== 1){
+                        pass.value = check;
+                    }
+                    if(check === 1){
+                        button.style.disabled = true;
+                        button.textContent = "Failed to Generate!";
+                        setTimeout(function(){
+                            button.style.disabled = false;
+                            button.textContent = "Generate!";
+                        },1000);
+                    }
+                }
+                if(strength[i].value === "reallystrong" && strength[i].checked === true){
+                    var check = generate.run(strength[i].value,length.value,button);
+                    if(check !== 1){
+                        pass.value = check;
+                    }
+                    if(check === 1){
+                        button.style.disabled = true;
+                        button.textContent = "Failed to Generate!";
+                        setTimeout(function(){
+                            button.style.disabled = false;
+                            button.textContent = "Generate!";
+                        },1000);
+                    }
+                }
+            }
+            }
+        });
+        clear.addEventListener("click", function(){
+            pass.value = "";
+        });
+    </script>
+</body>
+</html>
