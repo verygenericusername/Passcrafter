@@ -17,18 +17,13 @@
 
             </div>
             <br>
-            <h3 class="extra">Generated Password: </h3><input type="text" class="gen" readonly style="text-shadow: none;"> <button class="clear">Clear</button>
+            <h3 class="extra">Generated Password: </h3><input type="text" class="gen" readonly style="text-shadow: none;"> <button class="clear">Clear</button> <button class="clear copy"><img src="assets/icons/copy.png" height="20"></button><h4 class="copied" style="display:none;">Copied!</h4>
             <br>
             <h3 class="extra">Password Strength:</h3><input type="radio" name="strength" value="strong" checked><h3 class="extra" style="padding:5px;">Strong</h3> | <input type="radio" value="reallystrong" name="strength"><h3 class="extra" style="padding:5px;">Really Strong</h3>
             <br>
-            <h3 class="extra">Length of Password:</h3><input type="number" min="8" max="30" value="15" style="color:black; text-shadow:none;" class="len">
+            <h3 class="extra">Length of Password:</h3><input type="number" min="8" max="30" value="15" style="color:black; text-shadow:none;" class="len"> <h4 class="copied">(Length of passwords can only be up from 8 to 30.)</h4>
             <br>
             <button class="generate" style="color:black;">Generate!</button>
-            <br>
-            <br>
-            <br>
-            <br>
-            <br>
             <br>
             <br>
             <br>
@@ -53,6 +48,8 @@
         var length = document.querySelector(".len");
         var pass = document.querySelector(".gen");
         var clear = document.querySelector(".clear");
+        var copy = document.querySelector(".copy");
+        var copied = document.querySelector(".copied");
         button.addEventListener("click", function(){
             if(length.value >= 31 || length.value < 8){
                 button.style.disabled = true;
@@ -96,6 +93,16 @@
         });
         clear.addEventListener("click", function(){
             pass.value = "";
+        });
+        copy.addEventListener("click", function(){
+            if(pass.value !== ""){
+                pass.select();
+                document.execCommand("copy");
+                copied.style.display = "inline-block";
+                setTimeout(function(){
+                    copied.style.display = "none";
+                },2500);
+            }
         });
     </script>
 </body>
